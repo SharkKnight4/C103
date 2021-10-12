@@ -5,7 +5,7 @@ Webcam.set({
     jpeg_quality:100
 });
 camera=document.getElementById("camera");
-Webcam.attach(camera);
+Webcam.attach("camera");
 function takesnapshot(){
     Webcam.snap(function(data_uri){
         document.getElementById("result").innerHTML='<img id="selfie" src="'+data_uri+'"/>'
@@ -20,14 +20,14 @@ function find(){
 var object_image= document.getElementById("selfie");
 classifier.classify(object_image,gotResult);
 }
-function gotResult(){
+function gotResult(error,results){
     if (error){
 console.error(error);
     }
     else{
         console.log(results);
-        document.getElementById("result-name").innerHTML=results[0].label;
-        document.getElementById("result-accuracy").innerHTML=results[0].label.toFixed(3);
+        document.getElementById("result_name").innerHTML=results[0].label;
+        document.getElementById("result_accuracy").innerHTML=results[0].label.toFixed(3);
 
     }
 }
